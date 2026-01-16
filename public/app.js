@@ -75,16 +75,16 @@ async function updateCartDisplay() {
     const cartItemsEl = document.getElementById('cartItems');
 
     if (cart.items.length === 0) {
-      cartItemsEl.innerHTML = '<p class="empty-cart">Your cart is empty</p>';
+      cartItemsEl.innerHTML = '<p class="empty-cart" data-testid="empty-cart-message">Your cart is empty</p>';
     } else {
       cartItemsEl.innerHTML = cart.items.map(item => `
-        <div class="cart-item">
+        <div class="cart-item" data-testid="cart-item" data-item-id="${item.id}">
           <div class="cart-item-info">
-            <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-details">$${item.price.toFixed(2)} x ${item.quantity}</div>
+            <div class="cart-item-name" data-testid="cart-item-name">${item.name}</div>
+            <div class="cart-item-details" data-testid="cart-item-details">$${item.price.toFixed(2)} x ${item.quantity}</div>
           </div>
-          <span class="cart-item-subtotal">$${item.subtotal.toFixed(2)}</span>
-          <button class="btn btn-danger" onclick="removeItem('${item.id}')">Remove</button>
+          <span class="cart-item-subtotal" data-testid="cart-item-subtotal">$${item.subtotal.toFixed(2)}</span>
+          <button class="btn btn-danger" data-testid="remove-item-button" data-item-id="${item.id}" onclick="removeItem('${item.id}')">Remove</button>
         </div>
       `).join('');
     }
